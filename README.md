@@ -13,7 +13,7 @@
 
 ## 結果
 
-| No. | Pod名                       | プロセス数 | Limit            | プログラムの実行時間 | 処理時間(平均) | 処理時間(最悪値) |
+| No. | Pod名                       | プロセス数 | CPU Limit        | プログラムの実行時間 | 処理時間(平均) | 処理時間(最悪値) |
 | --- | --------------------------- | ---------- | ---------------- | -------------------- | -------------- | ---------------- |
 | 1   | burn-multi-proc             | 28         | なし             | 113ms                | 5ms            | 5ms              |
 | 2   | burn-multi-proc-with-limit  | 28         | `limits.cpu = 1` | 364ms                | 27.3ms         | 84ms             |
@@ -27,7 +27,7 @@
 <試行回数>, <処理時間[ms]>, <開始時刻>, <終了時刻>
 ```
 
-### 1. burn-multi-proc  
+### 1. burn-multi-proc (プロセス数: `28`、CPU Limit: なし)
 ```
 $ kubectl logs burn-multi-proc
 procs: 28, sleep: 1ms, iterations: 100
@@ -134,7 +134,7 @@ total,   113ms, 2020-02-18T14:08:34.684, 2020-02-18T14:08:34.797
    99,     5ms, 2020-02-18T14:08:34.792, 2020-02-18T14:08:34.797
 ```
 
-### 2. burn-multi-proc-with-limit
+### 2. burn-multi-proc-with-limit (プロセス数: `28`、CPU Limit: `limits.cpu = 1`)
 ```
 $ kubectl logs burn-multi-proc-with-limit
 procs: 28, sleep: 1ms, iterations: 100
@@ -241,7 +241,8 @@ total,   364ms, 2020-02-18T14:08:35.775, 2020-02-18T14:08:36.139
    99,    81ms, 2020-02-18T14:08:36.058, 2020-02-18T14:08:36.139
 ```
 
-### 3. burn-single-proc
+### 3. burn-single-proc (プロセス数: `1`、CPU Limit: なし)
+
 ```
 $ kubectl logs burn-single-proc
 procs: 1, sleep: 1ms, iterations: 100
@@ -348,7 +349,7 @@ total,   513ms, 2020-02-18T14:08:35.797, 2020-02-18T14:08:36.311
    99,     5ms, 2020-02-18T14:08:36.306, 2020-02-18T14:08:36.311
 ```
 
-### 4. urn-single-proc-with-limit
+### 4. urn-single-proc-with-limit (プロセス数: `1`、CPU Limit: `limits.cpu = 1`)
 ```
 $ kubectl logs burn-single-proc-with-limit
 procs: 1, sleep: 1ms, iterations: 100
