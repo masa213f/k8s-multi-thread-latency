@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: burn-multi-proc
+spec:
+  containers:
+  - name: burn
+    image: burn:latest
+    imagePullPolicy: Always
+  restartPolicy: Never
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: burn-multi-proc-with-limit
+spec:
+  containers:
+  - name: burn
+    image: burn:latest
+    imagePullPolicy: Always
+    resources:
+      limits:
+        cpu: "1"
+  restartPolicy: Never
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: burn-single-proc
+spec:
+  containers:
+  - name: burn
+    image: burn:latest
+    imagePullPolicy: Always
+    args: ["-procs", "1"]
+  restartPolicy: Never
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: burn-single-proc-with-limit
+spec:
+  containers:
+  - name: burn
+    image: burn:latest
+    args: ["-procs", "1"]
+    resources:
+      limits:
+        cpu: "1"
+  restartPolicy: Never
