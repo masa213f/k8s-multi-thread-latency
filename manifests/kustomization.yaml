@@ -4,5 +4,5 @@ resources:
   - pod.yaml
 images:
 - name: burn
-  newName: quay.io/ishii_masayuki/burn
+  newName: masa213f/burn
   newTag: "0.1"
